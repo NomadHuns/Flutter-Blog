@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/core/constants/move.dart';
 import 'package:flutter_blog/model/post/post.dart';
-import 'package:flutter_blog/provider/post_provider.dart';
-import 'package:flutter_blog/provider/session_provider.dart';
+import 'package:flutter_blog/views/pages/post/list_page/post_list_view_model.dart';
 import 'package:flutter_blog/views/pages/post/update_page/post_update_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,8 +18,7 @@ class PostDetailButtons extends ConsumerWidget {
       children: [
         IconButton(
           onPressed: () async {
-            SessionUser sessionUser = ref.read(sessionProvider);
-            ref.read(postProvider.notifier).notifyRemove(sessionUser.jwt!, post.id);
+            ref.read(postListPageProvider.notifier).notifyRemove(post.id);
             Navigator.pushNamed(context, Move.postListPage);
           },
           icon: Icon(CupertinoIcons.delete),

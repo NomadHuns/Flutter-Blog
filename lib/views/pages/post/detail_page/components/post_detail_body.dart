@@ -5,32 +5,38 @@ import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_content.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_profile.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_title.dart';
+import 'package:flutter_blog/views/pages/post/detail_page/post_detail_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostDetailBody extends ConsumerWidget {
-  final Post post;
+  final int postId;
 
-  const PostDetailBody(this.post, {Key? key}) : super(key: key);
+  const PostDetailBody(this.postId, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    PostDetailPageModel? model = ref.watch(postDetailPageProvider(postId));
     SessionUser sessionUser = ref.read(sessionProvider);
-
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          PostDetailTitle(post.title),
-          SizedBox(height: 20),
-          PostDetailProfile(post),
-          if (sessionUser.user!.id == post.user.id)
-            PostDetailButtons(post),
-          const Divider(),
-          SizedBox(height: 20),
-          Expanded(child: PostDetailContent(post.content)),
-        ],
-      ),
-    );
+    if(model == null){
+      return const CircularProgressIndicator();
+    } else {
+      Post post = model.post;
+      return Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PostDetailTitle(post.title),
+            SizedBox(height: 20),
+            PostDetailProfile(post),
+            if (sessionUser.user!.id == post.user.id)
+              PostDetailButtons(post),
+            const Divider(),
+            SizedBox(height: 20),
+            Expanded(child: PostDetailContent(post.content)),
+          ],
+        ),
+      );
+    }
   }
 }

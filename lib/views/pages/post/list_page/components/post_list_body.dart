@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/model/post/post.dart';
-import 'package:flutter_blog/provider/post_provider.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/post_detail_page.dart';
 import 'package:flutter_blog/views/pages/post/list_page/components/post_list_item.dart';
+import 'package:flutter_blog/views/pages/post/list_page/post_list_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostListBody extends ConsumerWidget {
@@ -10,7 +10,7 @@ class PostListBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PostModel? model = ref.watch(postProvider);
+    PostListPageModel? model = ref.watch(postListPageProvider);
     List<Post> posts = [];
 
     if (model != null) {
@@ -22,7 +22,7 @@ class PostListBody extends ConsumerWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage(posts[index])),
+            Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage(posts[index].id)),
             );
           },
           child: PostListItem(posts[index]),

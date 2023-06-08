@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/core/constants/move.dart';
 import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/core/util/validator_util.dart';
 import 'package:flutter_blog/dto/post_request.dart';
 import 'package:flutter_blog/model/post/post.dart';
-import 'package:flutter_blog/provider/post_provider.dart';
-import 'package:flutter_blog/provider/session_provider.dart';
 import 'package:flutter_blog/views/components/custom_elavated_button.dart';
 import 'package:flutter_blog/views/components/custom_text_area.dart';
 import 'package:flutter_blog/views/components/custom_text_form_field.dart';
+import 'package:flutter_blog/views/pages/post/detail_page/post_detail_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostUpdateForm extends ConsumerWidget {
@@ -43,11 +41,10 @@ class PostUpdateForm extends ConsumerWidget {
             funPageRoute: () async {
               if (_formKey.currentState!.validate()) {
                 PostUpdateReqDTO reqDTO = PostUpdateReqDTO(title: _title.text, content: _content.text);
-                SessionUser sessionUser = ref.read(sessionProvider);
 
-                ref.read(postProvider.notifier).notifyUpdate(sessionUser.jwt!, post.id, reqDTO);
+                ref.read(postDetailPageProvider(post.id).notifier).notifyUpdate(post.id, reqDTO);
 
-                Navigator.popAndPushNamed(context, Move.postListPage);
+                Navigator.pop(context);
               }
             },
           ),

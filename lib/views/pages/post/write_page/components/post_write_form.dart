@@ -3,11 +3,10 @@ import 'package:flutter_blog/core/constants/move.dart';
 import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/core/util/validator_util.dart';
 import 'package:flutter_blog/dto/post_request.dart';
-import 'package:flutter_blog/provider/post_provider.dart';
-import 'package:flutter_blog/provider/session_provider.dart';
 import 'package:flutter_blog/views/components/custom_elavated_button.dart';
 import 'package:flutter_blog/views/components/custom_text_area.dart';
 import 'package:flutter_blog/views/components/custom_text_form_field.dart';
+import 'package:flutter_blog/views/pages/post/list_page/post_list_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostWriteForm extends ConsumerWidget {
@@ -39,8 +38,7 @@ class PostWriteForm extends ConsumerWidget {
             funPageRoute: () async {
               if (_formKey.currentState!.validate()) {
                 PostSaveReqDTO reqDTO = PostSaveReqDTO(title: _title.text, content: _content.text);
-                SessionUser sessionUser = ref.read(sessionProvider);
-                ref.read(postProvider.notifier).notifyAdd(sessionUser.jwt!, reqDTO);
+                ref.read(postListPageProvider.notifier).notifyAdd(reqDTO);
                 Navigator.pop(context, Move.postListPage);
               }
             },

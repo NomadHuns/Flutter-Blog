@@ -18,9 +18,12 @@ class LoginBody extends StatelessWidget {
           Logo("Blog"),
           SizedBox(height: largeGap),
           LoginForm(),
-          CustomTextButton("Move To Join", () {
-            Navigator.pushNamed(context, Move.joinPage);
-          },),
+          CustomTextButton(
+            "Move To Join",
+            () {
+              Navigator.pushNamed(context, Move.joinPage);
+            },
+          ),
         ],
       ),
     );

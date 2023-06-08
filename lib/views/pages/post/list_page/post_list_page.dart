@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/provider/post_provider.dart';
-import 'package:flutter_blog/provider/session_provider.dart';
 import 'package:flutter_blog/views/components/custom_navigator.dart';
 import 'package:flutter_blog/views/pages/post/list_page/components/post_list_body.dart';
+import 'package:flutter_blog/views/pages/post/list_page/post_list_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostListPage extends ConsumerWidget {
@@ -22,8 +21,7 @@ class PostListPage extends ConsumerWidget {
       body: RefreshIndicator(
         key: refreshKey,
         onRefresh: () async {
-          SessionUser sessionUser = ref.read(sessionProvider);
-          ref.read(postProvider.notifier).notifyInit(sessionUser.jwt!);
+          ref.read(postListPageProvider.notifier).notifyInit();
         },
         child: PostListBody(),
       ),

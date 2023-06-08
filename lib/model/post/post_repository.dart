@@ -30,8 +30,20 @@ class PostRepository {
     }
   }
 
-  Future<ResponseDTO> fetchSave(
-      PostSaveReqDTO postSaveReqDTO, String jwt) async {
+  Future<ResponseDTO> fetchPost(String jwt, int id) async {
+    try {
+      Response response = await dio.get("/post/$id",
+          options: Options(headers: {"Authorization": "$jwt"}));
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      responseDTO.data = Post.fromJson(responseDTO.data);
+      return responseDTO;
+    } catch (e) {
+      return ResponseDTO(code: -1, msg: "실패 : ${e}");
+    }
+  }
+
+
+  Future<ResponseDTO> fetchSave(String jwt, PostSaveReqDTO postSaveReqDTO) async {
     try {
       Response response = await dio.post(
           "/post",
@@ -46,7 +58,7 @@ class PostRepository {
     }
   }
 
-  Future<ResponseDTO> fetchDelete(int id, String jwt) async {
+  Future<ResponseDTO> fetchDelete(String jwt, int id) async {
     try {
       Response response = await dio.delete("/post/$id",
           options: Options(headers: {"Authorization": "$jwt"}));
@@ -58,7 +70,7 @@ class PostRepository {
   }
 
   Future<ResponseDTO> fetchUpdate(
-      int id, PostUpdateReqDTO postUpdateReqDTO, String jwt) async {
+      String jwt, int id, PostUpdateReqDTO postUpdateReqDTO) async {
     try {
       Response response = await dio.put(
         "/post/$id",
