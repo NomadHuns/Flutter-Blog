@@ -3,8 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_blog/core/constants/http.dart';
 import 'package:flutter_blog/dto/response_dto.dart';
 import 'package:flutter_blog/dto/user_request.dart';
-import 'package:flutter_blog/provider/session_provider.dart';
-import 'package:logger/logger.dart';
 
 import 'user.dart';
 

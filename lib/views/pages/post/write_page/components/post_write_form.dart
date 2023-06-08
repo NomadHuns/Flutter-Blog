@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/core/constants/move.dart';
 import 'package:flutter_blog/core/constants/size.dart';

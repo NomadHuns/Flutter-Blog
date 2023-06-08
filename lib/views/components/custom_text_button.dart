@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/core/constants/move.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String text;

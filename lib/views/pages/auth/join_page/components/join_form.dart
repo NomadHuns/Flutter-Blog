@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blog/core/constants/move.dart';
 import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/core/util/validator_util.dart';
-import 'package:flutter_blog/views/components/custom_text_form_field.dart';
 import 'package:flutter_blog/views/pages/auth/components/auth_text_form_field.dart';
 
 class JoinForm extends StatelessWidget {
