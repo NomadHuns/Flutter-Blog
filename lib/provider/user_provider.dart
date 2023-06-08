@@ -46,9 +46,22 @@ class UserProvider {
 
   }
 
-  void logout() async {
+  void logout() {
 
     ref.read(sessionProvider).logoutSuccess();
 
+  }
+
+  void join(JoinReqDTO reqDTO) async {
+    Logger().d("join");
+
+    ResponseDTO responseDTO = await UserRepository().fetchJoin(reqDTO);
+
+    if(responseDTO.code == 1) {
+      Navigator.pushNamed(mContext!, Move.loginPage);
+
+    }else {
+      ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("회원가입 실패")));
+    }
   }
 }
