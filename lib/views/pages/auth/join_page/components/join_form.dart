@@ -21,21 +21,21 @@ class JoinForm extends ConsumerWidget {
       key: _formKey,
       child: Column(
         children: [
-          AuthTextFormField(
+          CustomAuthTextFormField(
             text: "Username",
             obscureText: false,
             funValidator: validateUsername(),
             controller: _username,
           ),
           SizedBox(height: mediumGap),
-          AuthTextFormField(
+          CustomAuthTextFormField(
             text: "Email",
             obscureText: false,
             funValidator: validateEmail(),
             controller: _email,
           ),
           SizedBox(height: mediumGap),
-          AuthTextFormField(
+          CustomAuthTextFormField(
             text: "Password",
             obscureText: true,
             funValidator: validatePassword(),

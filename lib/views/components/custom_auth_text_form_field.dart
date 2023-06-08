@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/core/constants/size.dart';
 
-class AuthTextFormField extends StatelessWidget {
+class CustomAuthTextFormField extends StatelessWidget {
   final String text;
   final bool obscureText;
   final funValidator;
   final TextEditingController controller;
 
-  const AuthTextFormField({
+  const CustomAuthTextFormField({
     Key? key,
     required this.text,
     this.obscureText = false,
