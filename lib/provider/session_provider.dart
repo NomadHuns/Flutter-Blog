@@ -13,11 +13,6 @@ final sessionProvider = Provider<SessionUser>((ref) {
   return SessionUser(ref);
 });
 
-// 최초 앱이 실행될 때 초기화 되어야 함.
-// 1. JWT 존재 유무 확인 (I/O)
-// 2. JWT로 회원정보 받아봄 (I/O)
-// 3. OK -> loginSuccess() 호출
-// 4. FAIL -> loginPage로 이동
 class SessionUser {
   final mContext = navigatorKey.currentContext;
   final Ref? ref;
@@ -32,7 +27,6 @@ class SessionUser {
 
     ResponseDTO responseDTO = await UserRepository().fetchLogin(loginReqDTO);
 
-    // 통신 상태 값이 1일 경우
     if(responseDTO.code == 1){
 
       // 토큰을 휴대폰에 저장
@@ -41,6 +35,7 @@ class SessionUser {
       // 로그인 상태 등록
       loginSuccess(responseDTO.data, responseDTO.token!);
 
+      // 페이지 이동
       Navigator.popAndPushNamed(mContext!, Move.postListPage);
 
     }else{
@@ -57,7 +52,7 @@ class SessionUser {
     this.isLogin = true;
   }
 
-  Future<void> logoutSuccess() async {
+  Future<void> logout() async {
     this.user = null;
     this.jwt = null;
     this.isLogin = false;
