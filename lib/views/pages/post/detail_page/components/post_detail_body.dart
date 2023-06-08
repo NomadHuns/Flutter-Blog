@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/model/post/post.dart';
+import 'package:flutter_blog/provider/session_provider.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_buttons.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_content.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_profile.dart';
@@ -13,6 +14,7 @@ class PostDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SessionUser sessionUser = ref.read(sessionProvider);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -22,8 +24,8 @@ class PostDetailBody extends ConsumerWidget {
           PostDetailTitle(post.title),
           SizedBox(height: 20),
           PostDetailProfile(post),
-          const Divider(),
-          PostDetailButtons(post),
+          if (sessionUser.user!.id == post.user.id)
+            PostDetailButtons(post),
           const Divider(),
           SizedBox(height: 20),
           Expanded(child: PostDetailContent(post.content)),
