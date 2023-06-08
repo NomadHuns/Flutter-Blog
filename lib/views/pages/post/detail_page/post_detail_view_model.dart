@@ -9,8 +9,8 @@ import 'package:flutter_blog/views/pages/post/list_page/post_list_view_model.dar
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final postDetailPageProvider = StateNotifierProvider.family.autoDispose<PostDetailPageProvider, PostDetailPageModel?, int>((ref, postId) {
-  return PostDetailPageProvider(ref, null)..notifyInit(postId);
+final postDetailPageProvider = StateNotifierProvider.family.autoDispose<PostDetailPageViewModel, PostDetailPageModel?, int>((ref, postId) {
+  return PostDetailPageViewModel(ref, null)..notifyInit(postId);
 });
 
 // 창고 데이터
@@ -20,11 +20,11 @@ class PostDetailPageModel{
 }
 
 // 창고
-class PostDetailPageProvider extends StateNotifier<PostDetailPageModel?>{
+class PostDetailPageViewModel extends StateNotifier<PostDetailPageModel?>{
   final mContext = navigatorKey.currentContext;
   final Ref ref;
 
-  PostDetailPageProvider(this.ref, super.state);
+  PostDetailPageViewModel(this.ref, super.state);
 
   void notifyInit(int id) async {
     Logger().d("notifyInit");

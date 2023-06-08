@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/views/pages/user/info_page/components/user_info_bottom_icons.dart';
+import 'package:flutter_blog/views/components/custom_bottom_icon_button.dart';
 import 'package:flutter_blog/views/pages/user/info_page/components/user_info_profile.dart';
 
 class UserInfoBody extends StatelessWidget {
@@ -15,7 +16,10 @@ class UserInfoBody extends StatelessWidget {
         Divider(color: Colors.white),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 18),
-          child: UserInfoBottomIcons(),
+          child: CustomBottomIconButton(
+            icon: CupertinoIcons.pen,
+            text: "프로필 편집",
+          ),
         )
       ],
     );

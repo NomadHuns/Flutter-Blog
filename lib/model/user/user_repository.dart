@@ -43,4 +43,16 @@ class UserRepository {
       return ResponseDTO(code: -1, msg: "유저네임 혹은 비번이 틀렸습니다");
     }
   }
+
+  Future<ResponseDTO> fetchUser(String jwt, int id) async {
+    try {
+      Response response = await dio.get("/user/$id",
+          options: Options(headers: {"Authorization": "$jwt"}));
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      responseDTO.data = User.fromJson(responseDTO.data);
+      return responseDTO;
+    } catch (e) {
+      return ResponseDTO(code: -1, msg: "실패 : ${e}");
+    }
+  }
 }
