@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/core/constants/move.dart';
 import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/core/util/validator_util.dart';
 import 'package:flutter_blog/dto/user_request.dart';
-import 'package:flutter_blog/provider/session_provider.dart';
+import 'package:flutter_blog/provider/user_provider.dart';
 import 'package:flutter_blog/views/pages/auth/components/auth_text_form_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -41,7 +40,7 @@ class LoginForm extends ConsumerWidget {
               // 4. 유효성 검사
               if (_formKey.currentState!.validate()) {
                 LoginReqDTO loginReqDTO = LoginReqDTO(username: _usernameCon.text, password: _passwordCon.text);
-                ref.read(sessionProvider).login(loginReqDTO);
+                ref.read(userProvider).login(loginReqDTO);
               }
             },
             child: Text("Login"),
