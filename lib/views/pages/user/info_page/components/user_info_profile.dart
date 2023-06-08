@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/model/user/user.dart';
 import 'package:flutter_blog/views/pages/user/info_page/user_info_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,7 +35,7 @@ class UserInfoProfile extends ConsumerWidget {
               fontSize: 20,
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: smallGap),
           Text(
             user.email,
             style: TextStyle(

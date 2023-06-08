@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/model/post/post.dart';
 
 class PostDetailProfile extends StatelessWidget {
@@ -17,9 +18,9 @@ class PostDetailProfile extends StatelessWidget {
       subtitle: Row(
         children: [
           Text(post.user.email),
-          SizedBox(width: 10),
+          SizedBox(width: mediumGap),
           Text("·"),
-          SizedBox(width: 10),
+          SizedBox(width: mediumGap),
           Text("Written on "),
           Text(post.getUpdated()),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/views/components/custom_bottom_icon_button.dart';
 import 'package:flutter_blog/views/pages/user/info_page/components/user_info_profile.dart';
 
@@ -12,7 +13,7 @@ class UserInfoBody extends StatelessWidget {
       children: [
         Spacer(),
         UserInfoProfile(),
-        SizedBox(height: 20),
+        SizedBox(height: mediumGap),
         Divider(color: Colors.white),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 18),

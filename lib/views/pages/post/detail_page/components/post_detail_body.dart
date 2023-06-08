@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/core/constants/size.dart';
 import 'package:flutter_blog/model/post/post.dart';
 import 'package:flutter_blog/provider/session_provider.dart';
 import 'package:flutter_blog/views/pages/post/detail_page/components/post_detail_buttons.dart';
@@ -27,12 +28,12 @@ class PostDetailBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PostDetailTitle(post.title),
-            SizedBox(height: 20),
+            SizedBox(height: largeGap),
             PostDetailProfile(post),
             if (sessionUser.user!.id == post.user.id)
               PostDetailButtons(post),
             const Divider(),
-            SizedBox(height: 20),
+            SizedBox(height: largeGap),
             Expanded(child: PostDetailContent(post.content)),
           ],
         ),
