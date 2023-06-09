@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       initialRoute: Move.loginPage,
       routes: getRouters(),
       theme: ThemeData(
-        primaryIconTheme: IconThemeData(color: Colors.red),
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
           centerTitle: true,

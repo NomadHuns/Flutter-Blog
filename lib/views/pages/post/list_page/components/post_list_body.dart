@@ -22,8 +22,10 @@ class PostListBody extends ConsumerWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailPage(posts[index].id)),
-            );
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PostDetailPage(posts[index].id)));
           },
           child: PostListItem(posts[index]),
         );
